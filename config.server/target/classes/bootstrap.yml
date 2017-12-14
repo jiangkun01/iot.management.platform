@@ -1,0 +1,20 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/ # 服务注册中心地址
+spring:
+  application:
+    name: config-server
+  cloud:
+      config:
+        server:
+          git:
+            uri: https://github.com/jiangkun01/gun.contoller.git
+            search-paths: config_pro
+            username: 467288604@qq.com
+            password: a15054314325
+security:
+  user:
+    password: 813cQxsRGaPI0jFeOU0X

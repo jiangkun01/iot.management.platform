@@ -1,0 +1,19 @@
+eureka:
+  instance:
+    hostname: gateway-server
+  client:
+    serviceUrl:
+      #defaultZone: http://user:1Y2foKpoqx5uzcaTq9s@register.oudishen.cn/eureka/
+      defaultZone: http://user:1Y2foKpoqx5uzcaTq9s@localhost:8888/eureka/
+zuul:
+ routes:
+    core-service:
+      path: /api/core/**
+      serviceId: core-server
+      stripPrefix: true
+      sensitiveHeaders:
+    logs-service:
+        path: /api/logs/**
+        serviceId: logs-server
+        stripPrefix: false
+        sensitiveHeaders:

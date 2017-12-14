@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: gateway-server
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1/iot_management_platform?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: developer
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+      host: 47.93.15.77
+      database: 0
+      port: 6379
+server:
+  port: 8060
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+
+#logging:
+#  level:
+#    jdbc: error
+#    jdbc.sqltiming: inf
+security:
+  oauth2:
+    resource:
+      filter-order: 3

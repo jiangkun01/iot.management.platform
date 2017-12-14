@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: core-server
+  cloud:
+    config:
+      password: 813cQxsRGaPI0jFeOU0X
+      username: users
+      profile: dev
+      label: master
+      discovery:
+        enabled: true                                 # 默认false，设为true表示使用注册中心中的configserver配置而不自己配置configserver的uri
+        serviceId: config-server
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://user:1Y2foKpoqx5uzcaTq9s@register.oudishen.cn/eureka/
+      defaultZone: http://user:1Y2foKpoqx5uzcaTq9s@localhost:8888/eureka/
