@@ -22,9 +22,9 @@ public class PageInterceptor implements HandlerInterceptor {
         if (handler instanceof HandlerMethod) {
             HandlerMethod method = (HandlerMethod) handler;
             if (method.getMethod().getReturnType().isAssignableFrom( Result.class)) {
-                PageAnnotated pager = method.getMethodAnnotation(PageAnnotated.class);
-                System.out.print(pager);
-                if (pager != null) {
+                PageAnnotated page = method.getMethodAnnotation(PageAnnotated.class);
+                System.out.print(page);
+                if (page != null) {
                     return true;
                 }
             }
@@ -39,7 +39,7 @@ public class PageInterceptor implements HandlerInterceptor {
             PageAnnotated pager = method.getMethodAnnotation(PageAnnotated.class);
 
             // 从请求中获取 page 参数
-            String pageString = request.getParameter("pageNum");
+            String pageString = request.getParameter("page");
             if (Strings.isNullOrEmpty ( pageString )) {
                 pageString = "1";
             }
@@ -54,9 +54,9 @@ public class PageInterceptor implements HandlerInterceptor {
             int pageSize = Integer.parseInt(pageSizeString);
 
             // 限制每页结果数的最大最小值
-            if (pageSize > pager.pageSize ()) {
+           /* if (pageSize > pager.pageSize ()) {
                 pageSize = pager.pageSize ();
-            }
+            }*/
             PageHelper.startPage(page, pageSize);
         }else{
             System.out.print ( ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
