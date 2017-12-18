@@ -29,14 +29,13 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
     @Value("${spring.redis.timeout}")
     private int timeout;
 
-   /* @Value("${spring.redis.pool.max-idle}")
+    @Value("${spring.redis.pool.max-idle}")
     private int maxIdle;
 
-    @Value("${spring.redis.pool.max-wait}")
+    /*  @Value("${spring.redis.pool.max-wait}")
     private long maxWaitMillis;*/
-/*
     @Value("${spring.redis.password}")
-    private String password;*/
+    private String password;
 
     @Bean
     public JedisPool redisPoolFactory() {
@@ -45,7 +44,7 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         /*jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);*/
-        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout/*, password*/);
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
         return jedisPool;
     }
 

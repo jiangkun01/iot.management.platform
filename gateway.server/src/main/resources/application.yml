@@ -11,6 +11,7 @@ spring:
       host: 47.93.15.77
       database: 0
       port: 6379
+      password: lnI0iLcNAn6tEw4nZ3c
 server:
   port: 8060
 #  jpa:

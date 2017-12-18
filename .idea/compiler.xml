@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config.server" />
+        <module name="core.server" />
+        <module name="gateway.server" />
+        <module name="logs.server" />
+        <module name="registry.server" />
+        <module name="ribbon.server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="config.server" target="1.6" />
+      <module name="core.server" target="1.8" />
+      <module name="gateway.server" target="1.6" />
+      <module name="IoT.mangement.platform" target="1.6" />
+      <module name="logs.server" target="1.6" />
+      <module name="registry.server" target="1.6" />
+      <module name="ribbon.server" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

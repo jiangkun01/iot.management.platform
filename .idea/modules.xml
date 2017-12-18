@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IoT.mangement.platform.iml" filepath="$PROJECT_DIR$/IoT.mangement.platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config.server/config.server.iml" filepath="$PROJECT_DIR$/config.server/config.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core.server/core.server.iml" filepath="$PROJECT_DIR$/core.server/core.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway.server/gateway.server.iml" filepath="$PROJECT_DIR$/gateway.server/gateway.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logs.server/logs.server.iml" filepath="$PROJECT_DIR$/logs.server/logs.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/registry.server/registry.server.iml" filepath="$PROJECT_DIR$/registry.server/registry.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ribbon.server/ribbon.server.iml" filepath="$PROJECT_DIR$/ribbon.server/ribbon.server.iml" />
+    </modules>
+  </component>
+</project>
