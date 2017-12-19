@@ -1,6 +1,9 @@
 package co.fy.core.server.organization.dao;
 
 import co.fy.core.server.organization.model.Organization;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 import static org.apache.ibatis.jdbc.SqlBuilder.*;
 
@@ -67,6 +70,19 @@ public class OrganizationSqlProvider {
         
         WHERE("id = #{id,jdbcType=VARCHAR}");
         
+        return SQL();
+    }
+
+
+    public String selectList(@Param("name") String name, @Param("createTime") String createTime, @Param("endTime") String endTime) {
+        BEGIN();
+        SELECT(" \"select\",\n" +
+                "            \"id, name, addtime, deletetime, enable\",\n" +
+                "            \"from organization\",");
+
+
+
+
         return SQL();
     }
 }

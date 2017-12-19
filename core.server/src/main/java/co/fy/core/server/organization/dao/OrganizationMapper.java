@@ -1,6 +1,7 @@
 package co.fy.core.server.organization.dao;
 
 import co.fy.core.server.organization.model.Organization;
+import com.alibaba.druid.sql.visitor.functions.If;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
@@ -13,9 +14,11 @@ public interface OrganizationMapper {
      *
      * @mbggenerated Mon Dec 18 17:22:06 CST 2017
      */
-    @Delete({
-        "delete from organization",
-        "where id = #{id,jdbcType=VARCHAR}"
+    /**/
+    @Update({
+            "update organization",
+            "set enable = 0",
+            "where id = #{id,jdbcType=VARCHAR}"
     })
     int deleteByPrimaryKey(String id);
 
@@ -89,13 +92,18 @@ public interface OrganizationMapper {
         "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Organization record);
-
     @Select({
+            "<script>",
             "select",
             "id, name, addtime, deletetime, enable",
             "from organization",
-            "where enable=1"
+            "where enable=1",
+            "<if test=\"name!=null and name!=''\">and name like CONCAT(CONCAT('%', #{name}),'%')</if>",
+            "<if test=\"createTime!=null and createTime!=''\">and addtime &gt;= concat( #{createTime},' 00:00:00')</if>",
+            "<if test=\"endTime!=null and endTime!=''\">and addtime &lt;= CONCAT( #{endTime},' 23:59:59')</if>",
+            "</script>"
     })
+
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.VARCHAR, id=true),
             @Result(column="name", property="name", jdbcType= JdbcType.VARCHAR),
@@ -103,5 +111,5 @@ public interface OrganizationMapper {
             @Result(column="deletetime", property="deletetime", jdbcType= JdbcType.TIMESTAMP),
             @Result(column="enable", property="enable", jdbcType= JdbcType.INTEGER)
     })
-    List<Organization> selectOrganizations();
+    List<Organization> selectOrganizations(@Param("name") String name, @Param("createTime") String createTime, @Param("endTime") String endTime);
 }

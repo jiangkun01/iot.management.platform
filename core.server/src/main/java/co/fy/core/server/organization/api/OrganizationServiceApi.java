@@ -10,5 +10,9 @@ import java.util.List;
  * @AUTHOR: 姜坤
  **/
 public interface OrganizationServiceApi {
-    List<Organization> getList();
+    List<Organization> getList(String name, String createTime, String endTime);
+    Boolean removeOrganization(String id);
+    void rmMu(String[] ids);
+    void create(Organization organization);
+    void update(Organization organization);
 }
