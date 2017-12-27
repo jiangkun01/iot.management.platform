@@ -10,5 +10,7 @@ import java.util.List;
  * @AUTHOR: 姜坤
  **/
 public interface UsersServiceApi {
-    List<Users> getUsersList();
+    List<Users> getUsersList(String name, String roleId);
+    Boolean deleteUser(String id);
+    void deleteUserMut(String[] ids) throws Exception;
 }

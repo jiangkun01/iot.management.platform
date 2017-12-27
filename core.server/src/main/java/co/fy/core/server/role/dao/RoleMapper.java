@@ -3,6 +3,9 @@ package co.fy.core.server.role.dao;
 import co.fy.core.server.role.model.Role;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+
+import java.util.List;
+
 @Mapper
 public interface RoleMapper {
     /**
@@ -98,4 +101,15 @@ public interface RoleMapper {
             "AND authority.api = #{api,jdbcType=VARCHAR}"
     })
     int selectByUsernameAndPath(@Param("userName")String userName, @Param("api")String api);
+    @Select({
+            "select",
+            "id, role_name, enable",
+            "from role"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType= JdbcType.VARCHAR, id=true),
+            @Result(column="role_name", property="roleName", jdbcType= JdbcType.VARCHAR),
+            @Result(column="enable", property="enable", jdbcType= JdbcType.VARCHAR)
+    })
+    List<Role> selectList();
 }

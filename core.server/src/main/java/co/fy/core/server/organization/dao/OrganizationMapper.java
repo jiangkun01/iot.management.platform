@@ -101,6 +101,7 @@ public interface OrganizationMapper {
             "<if test=\"name!=null and name!=''\">and name like CONCAT(CONCAT('%', #{name}),'%')</if>",
             "<if test=\"createTime!=null and createTime!=''\">and addtime &gt;= concat( #{createTime},' 00:00:00')</if>",
             "<if test=\"endTime!=null and endTime!=''\">and addtime &lt;= CONCAT( #{endTime},' 23:59:59')</if>",
+            "order by addtime desc",
             "</script>"
     })
 
