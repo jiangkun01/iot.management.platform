@@ -97,6 +97,7 @@ public interface UsersMapper {
             "where users.enabled=1",
             "<if test=\"name!=null and name!=''\">and users.username like CONCAT(CONCAT('%', #{name}),'%')</if>",
             "<if test=\"roleId!=null and roleId!=''\">and users.role_id =#{roleId}</if>",
+            "order by addtime desc",
             "</script>"
     })
     @Results({

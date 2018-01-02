@@ -2,6 +2,7 @@ package co.fy.core.server.users.web;
 
 import co.fy.core.server.custom.annotation.PageAnnotated;
 import co.fy.core.server.users.api.UsersServiceApi;
+import co.fy.core.server.users.model.Users;
 import co.fy.core.server.utils.Result;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -50,5 +51,19 @@ public class UsersController {
             logger.error("====================================>/user/deleteMu"+e);
             return Result.fail("删除失败请联系管理员","500");
         }
+    }
+    @PostMapping(path = "/create")
+    public Result<String> create(@RequestBody CrUserVo user){
+        if(usersServiceApi.creatUser(user.getUser())){
+            return Result.ok("ok");
+        }
+        return Result.fail("添加失败请联系管理员","500");
+    }
+    @PostMapping(path = "/update")
+    public Result<String> update(@RequestBody CrUserVo user){
+        if(usersServiceApi.updateUser(user.getUser())){
+            return Result.ok("ok");
+        }
+        return Result.fail("修改失败请联系管理员","500");
     }
 }

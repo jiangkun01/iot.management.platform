@@ -13,4 +13,6 @@ public interface UsersServiceApi {
     List<Users> getUsersList(String name, String roleId);
     Boolean deleteUser(String id);
     void deleteUserMut(String[] ids) throws Exception;
+    Boolean creatUser(Users user);
+    Boolean updateUser(Users users);
 }

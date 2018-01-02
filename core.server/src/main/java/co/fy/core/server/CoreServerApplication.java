@@ -23,6 +23,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableScheduling
 @ComponentScan
 @MapperScan("server")
+
 public class CoreServerApplication {
     public static void main(String[] args) {
         // 程序启动入口
