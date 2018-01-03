@@ -54,6 +54,7 @@ public class UsersController {
     }
     @PostMapping(path = "/create")
     public Result<String> create(@RequestBody CrUserVo user){
+        if(!usersServiceApi.validateUniqueByUserName(user.getUser().getUsername())) return  Result.fail("用户名已存在，请保证用户名的唯一性","300");
         if(usersServiceApi.creatUser(user.getUser())){
             return Result.ok("ok");
         }
@@ -61,9 +62,25 @@ public class UsersController {
     }
     @PostMapping(path = "/update")
     public Result<String> update(@RequestBody CrUserVo user){
-        if(usersServiceApi.updateUser(user.getUser())){
-            return Result.ok("ok");
+        Users userV=usersServiceApi.getUser(user.getUser().getUserId());
+        if(userV.getUsername().equals(user.getUser().getUsername())){
+            if(usersServiceApi.updateUser(user.getUser())){
+                return Result.ok("ok");
+            }
+        }else {
+            if(!usersServiceApi.validateUniqueByUserName(user.getUser().getUsername())) return  Result.fail("用户名已存在，请保证用户名的唯一性","300");
+            if(usersServiceApi.updateUser(user.getUser())){
+                return Result.ok("ok");
+            }
         }
         return Result.fail("修改失败请联系管理员","500");
     }
+    @GetMapping(path = "/validateByUserName") // create 专用
+    public Result<String> validateByUserName(String username){
+        if(usersServiceApi.validateUniqueByUserName(username)){
+            return  Result.ok("ok");
+        }else {
+            return  Result.fail("用户名已存在，请保证用户名的唯一性","300");
+        }
+    };
 }

@@ -109,4 +109,13 @@ public interface UsersMapper {
             @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT)
     })
     List<Users> selectList(@Param("name") String name, @Param("roleId") String roleId);
+    @Select({
+            "select",
+            "count(1)",
+            "from users",
+            "where username = #{username,jdbcType=BIGINT}",
+            "and enabled=1"
+    })
+    int selectByPrimaryUsername(String username);
+
 }

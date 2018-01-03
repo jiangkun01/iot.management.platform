@@ -76,4 +76,22 @@ public class UsersServiceImpl implements UsersServiceApi{
             return  false;
         }
     }
+
+    /**
+     *  添加用户的时候验证唯一性 如过用户名已存在 返回false
+     * @param username
+     * @return
+     */
+    @Override
+    public Boolean validateUniqueByUserName(String username) {
+        if(usersMapper.selectByPrimaryUsername(username)>0){
+            return  false;
+        }
+        return  true;
+    }
+
+    @Override
+    public Users getUser(Long userId) {
+        return usersMapper.selectByPrimaryKey(userId);
+    }
 }
