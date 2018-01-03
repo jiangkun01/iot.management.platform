@@ -14,7 +14,7 @@ public interface UsersMapper {
      * @mbggenerated Sun Dec 03 18:37:31 CST 2017
      */
     @Delete({
-        "delete from users",
+        "UPDATE `users` SET `enabled`='0'",
         "where user_id = #{userId,jdbcType=BIGINT}"
     })
     int deleteByPrimaryKey(Long userId);
@@ -90,16 +90,32 @@ public interface UsersMapper {
     })
     int updateByPrimaryKey(Users record);
     @Select({
+            "<script>",
             "select",
-            "user_id, username, password, role_id, enabled",
-            "from users"
+            "user_id, username, password, role_id, enabled,role_name",
+            "from users left join role on users.role_id=role.id",
+            "where users.enabled=1",
+            "<if test=\"name!=null and name!=''\">and users.username like CONCAT(CONCAT('%', #{name}),'%')</if>",
+            "<if test=\"roleId!=null and roleId!=''\">and users.role_id =#{roleId}</if>",
+            "order by addtime desc",
+            "</script>"
     })
     @Results({
             @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT, id=true),
             @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
             @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
             @Result(column="role_id", property="roleId", jdbcType=JdbcType.VARCHAR),
+            @Result(column="role_name", property="roleName", jdbcType=JdbcType.VARCHAR),
             @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT)
     })
-    List<Users> selectList();
+    List<Users> selectList(@Param("name") String name, @Param("roleId") String roleId);
+    @Select({
+            "select",
+            "count(1)",
+            "from users",
+            "where username = #{username,jdbcType=BIGINT}",
+            "and enabled=1"
+    })
+    int selectByPrimaryUsername(String username);
+
 }

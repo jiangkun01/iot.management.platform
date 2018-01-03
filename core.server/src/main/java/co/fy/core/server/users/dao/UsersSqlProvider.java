@@ -31,7 +31,9 @@ public class UsersSqlProvider {
         if (record.getRoleId() != null) {
             VALUES("role_id", "#{roleId,jdbcType=VARCHAR}");
         }
-        
+        if (record.getAddTime() != null) {
+            VALUES("addtime", "#{addTime,jdbcType=VARCHAR}");
+        }
         if (record.getEnabled() != null) {
             VALUES("enabled", "#{enabled,jdbcType=BIT}");
         }

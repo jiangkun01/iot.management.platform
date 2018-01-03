@@ -3,7 +3,9 @@ spring:
     name: gateway-server
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1/iot_management_platform?useUnicode=true&characterEncoding=utf-8
+    #url: jdbc:mysql://127.0.0.1/iot_management_platform?useUnicode=true&characterEncoding=utf-8
+    #windows
+    url: jdbc:mysql://127.0.0.1/iot_management_platform?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: developer
     driver-class-name: com.mysql.jdbc.Driver
